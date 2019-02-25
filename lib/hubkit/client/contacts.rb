@@ -12,6 +12,10 @@ module Hubkit
       def contact_by_email(email, options = {})
         get("/contacts/v1/contact/email/#{email}/profile", { query: options })
       end
+
+      def contact_properties
+        get('/properties/v1/contacts/properties')
+      end
     end
   end
 end

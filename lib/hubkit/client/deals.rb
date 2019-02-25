@@ -36,6 +36,10 @@ module Hubkit
       def deal(deal_id, options = {})
         get("/deals/v1/deal/#{deal_id}", { query: options })
       end
+
+      def deal_properties
+        get('/properties/v1/deals/properties/')
+      end
     end
   end
 end

@@ -1,6 +1,7 @@
 require "hubkit/client/connection"
 
 require "hubkit/client/contacts"
+require "hubkit/client/companies"
 require "hubkit/client/deals"
 
 module Hubkit
@@ -8,6 +9,7 @@ module Hubkit
     include HTTParty
     include Hubkit::Client::Connection
     include Hubkit::Client::Contacts
+    include Hubkit::Client::Companies
     include Hubkit::Client::Deals
 
     base_uri "https://api.hubapi.com"
