@@ -6,7 +6,7 @@ module Hubkit
           "properties" => properties
         }
         deal["associations"] = associations unless associations.empty?
-        post("/deals/v1/deal/", { body: deal.to_json })
+        post("/deals/v1/deal", { body: deal.to_json })
       end
 
       def update_deal()
@@ -38,7 +38,7 @@ module Hubkit
       end
 
       def deal_properties
-        get('/properties/v1/deals/properties/')
+        get('/properties/v1/deals/properties')
       end
     end
   end

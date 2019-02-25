@@ -22,7 +22,34 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+client = Hubkit::Client.new(
+  oauth_token: <your-access-token>,
+  refresh_token: <your-refresh-token>,
+  client_id: <your-client-id>,
+  client_secret: <your-client-secret>,
+  authentication_callback: Proc.new { |hubspot_new_token_response| <do-something-with-it> },
+)
+
+client.deal('<deal-id>')
+
+client.create_deal(
+  [
+    {
+      "value" => "Tim's Newer Deal",
+      "name" => "dealname"
+    },
+    {
+      "value" => "appointmentscheduled",
+      "name" => "dealstage"
+    },
+    {
+      "value" => "default",
+      "name" => "pipeline"
+    }
+  ]
+)
+```
 
 ## Development
 

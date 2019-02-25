@@ -10,7 +10,7 @@ module Hubkit
       end
 
       def company_properties
-        get(' /properties/v1/companies/properties/')
+        get('/properties/v1/companies/properties')
       end
     end
   end
