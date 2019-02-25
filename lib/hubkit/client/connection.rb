@@ -17,7 +17,12 @@ module Hubkit
         retries = 2
         begin
           response = call(http_method, path, options)
-          Hashie::Mash.new(response.parsed_response)
+          case response.parsed_response
+            when Hash then Hashie::Mash.new(response.parsed_response)
+            when Array then response.parsed_response.map {|hash| Hashie::Mash.new(hash) }
+            when nil then nil
+            else response.parsed_response
+          end
         rescue Hubkit::UnauthorizedError
           if retries.positive?
             retries -= 1
