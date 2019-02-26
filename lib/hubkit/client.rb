@@ -17,6 +17,16 @@ module Hubkit
     base_uri "https://api.hubapi.com"
     format :json
 
+    query_string_normalizer proc { |query|
+      query.map do |key, value|
+        if value.is_a?(Array)
+          value.map {|v| "#{key}=#{v}"}
+        else
+          {key => value}.to_query
+        end
+      end.flatten.sort.join('&')
+    }
+
     def initialize(options = {})
       # Loop through potential options. Can be extended to set default values.
       %w(oauth_token token_expires_in refresh_token client_id client_secret authentication_callback).each do |key|
