@@ -1,5 +1,6 @@
 require "hubkit/client/connection"
 
+require "hubkit/client/associations"
 require "hubkit/client/contacts"
 require "hubkit/client/companies"
 require "hubkit/client/deals"
@@ -9,6 +10,7 @@ module Hubkit
   class Client
     include HTTParty
     include Hubkit::Client::Connection
+    include Hubkit::Client::Associations
     include Hubkit::Client::Contacts
     include Hubkit::Client::Companies
     include Hubkit::Client::Deals
