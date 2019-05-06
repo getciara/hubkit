@@ -1,6 +1,11 @@
 module Hubkit
   class Client
     module Contacts
+      def create_or_update_contact(email, properties)
+        contact = { "properties": properties }
+        post("/contacts/v1/contact/createOrUpdate/email/#{email}", { body: contact.to_json })
+      end
+
       def contacts(options = {})
         get('/contacts/v1/lists/all/contacts/all', { query: options })
       end
