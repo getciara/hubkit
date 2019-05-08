@@ -11,6 +11,12 @@ module Hubkit
         request :post, path, options
       end
 
+      def put(path, options = {})
+        options[:headers] ||= {}
+        options[:headers].merge!({ 'Content-Type' => 'application/json' })
+        request :put, path, options
+      end
+
       private
 
       def request(http_method, path, options)

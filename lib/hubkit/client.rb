@@ -5,6 +5,7 @@ require "hubkit/client/contacts"
 require "hubkit/client/companies"
 require "hubkit/client/deals"
 require "hubkit/client/pipelines"
+require "hubkit/client/engagements"
 
 module Hubkit
   class Client
@@ -15,6 +16,7 @@ module Hubkit
     include Hubkit::Client::Companies
     include Hubkit::Client::Deals
     include Hubkit::Client::Pipelines
+    include Hubkit::Client::Engagements
 
     base_uri "https://api.hubapi.com"
     format :json
