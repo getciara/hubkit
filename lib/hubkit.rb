@@ -7,6 +7,9 @@ require "hubkit/client"
 module Hubkit
   class Error < StandardError; end
   class UnauthorizedError < Error; end
+  class ConnectionError < Error; end
+  class ForbiddenError < Error; end
+  class LimitError < Error; end
 
   class << self
     def client

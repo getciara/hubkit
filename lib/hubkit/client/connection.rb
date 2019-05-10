@@ -48,8 +48,19 @@ module Hubkit
           when 401
             authenticate!
             raise Hubkit::UnauthorizedError
+          when 403
+            raise Hubkit::ForbiddenError
+          when 429
+            raise Hubkit::LimitError
+          when 522
+            raise Hubkit::ConnectionError
           else
-            raise Hubkit::Error, response.parsed_response['message']
+            begin
+              parsed_error = response.parsed_response['message']
+            rescue JSON::ParserError
+              parsed_error = response.to_s
+            end
+            raise Hubkit::Error, parsed_error
           end
       end
 
@@ -62,7 +73,12 @@ module Hubkit
         })
 
         if response.code != 200
-          raise Hubkit::Error, response.parsed_response['message']
+          begin
+            parsed_error = response.parsed_response['message']
+          rescue JSON::ParserError
+            parsed_error = response.to_s
+          end
+          raise Hubkit::Error, parsed_error
         end
 
         data = Hashie::Mash.new(response.parsed_response)
