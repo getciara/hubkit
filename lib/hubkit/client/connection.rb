@@ -45,6 +45,8 @@ module Hubkit
         case response.code
           when 200
             return response
+          when 204
+            return response
           when 401
             authenticate!
             raise Hubkit::UnauthorizedError

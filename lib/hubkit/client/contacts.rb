@@ -26,6 +26,11 @@ module Hubkit
       def contact_properties
         get('/properties/v1/contacts/properties')
       end
+
+      def update_contact(vid, properties)
+        contact = { "properties": properties }
+        post("/contacts/v1/contact/vid/#{vid}/profile", { body: contact.to_json })
+      end
     end
   end
 end
