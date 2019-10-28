@@ -58,11 +58,13 @@ module Hubkit
             raise Hubkit::ConnectionError
           else
             begin
-              parsed_error = response.parsed_response['message']
+              parsed_error = response.parsed_response
+              message = parsed_error['message']
             rescue JSON::ParserError
-              parsed_error = response.to_s
+              parsed_error = nil
+              message = response.to_s
             end
-            raise Hubkit::Error, parsed_error
+            raise Hubkit::Error.new(message, parsed_error)
           end
       end
 
@@ -76,11 +78,13 @@ module Hubkit
 
         if response.code != 200
           begin
-            parsed_error = response.parsed_response['message']
+            parsed_error = response.parsed_response
+            message = parsed_error['message']
           rescue JSON::ParserError
-            parsed_error = response.to_s
+            parsed_error = nil
+            message = response.to_s
           end
-          raise Hubkit::Error, parsed_error
+          raise Hubkit::Error.new(message, parsed_error)
         end
 
         data = Hashie::Mash.new(response.parsed_response)

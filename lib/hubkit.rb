@@ -3,9 +3,9 @@ require "httparty"
 require "hashie"
 require "hubkit/version"
 require "hubkit/client"
+require "hubkit/error"
 
 module Hubkit
-  class Error < StandardError; end
   class UnauthorizedError < Error; end
   class ConnectionError < Error; end
   class ForbiddenError < Error; end

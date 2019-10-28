@@ -12,3 +12,5 @@
 vendor/bundle
 erl_crash.dump
 *_test.rb
+.ruby-version
+.example-client
